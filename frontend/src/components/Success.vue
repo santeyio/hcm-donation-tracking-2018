@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <h1 class="text-center">Thanks!</h1>
-    <div class="col-sm-8 offset-2">
+    <div class="col">
       <p class="text-center">
         If you were not redirected, please 'allow popups' on this page, 
         or go ahead and follow the 'Donate' link above.
