@@ -77,24 +77,14 @@
       Continue
     </button>
     <b-modal ref="submitModal" hide-footer id="submitModal" title="Please Verify Your Information">
-      <div class="row">
-        <div id="info" class="col-sm-6 text-left">
-          <span class="text-muted">First Name:</span><br/>
-          <span class="text-muted">Last Name:</span> <br/>
-          <span class="text-muted">Email:</span> <br/>
-          <span class="text-muted">Monthly Donation:</span> <br/>
-          <span class="text-muted">One Time Donation:</span> <br/>
-          <span class="text-muted">Payment Type:</span> <br/>
-        </div>
-        <div class="col-sm-6 text-left">
-          {{ firstName }}<br/>
-          {{ lastName }}<br/>
-          {{ email }}<br/>
-          {{ monthlyAmount }}<br/>
-          {{ oneTimeAmount }}<br/>
-          {{ paymentType }}<br/>
-        </div>
-      </div>
+      <div class="col">
+        <span class="text-muted">First Name:</span> {{ firstName }}<br/>
+        <span class="text-muted">Last Name:</span> {{ lastName }}<br/>
+        <span class="text-muted">Email:</span> {{ email }}<br/>
+        <span class="text-muted">Monthly Donation:</span> {{ monthlyAmount }}<br/>
+        <span class="text-muted">One Time Donation:</span> {{ oneTimeAmount }}<br/>
+        <span class="text-muted">Payment Type:</span> {{ paymentType }}<br/>
+      </div><br/>
       <div id="footer" class="modal-footer">
         <b-button @click="hideModal" id="info-button" variant="info">Edit</b-button>
         <b-button @click="submit" variant="primary">Submit</b-button>

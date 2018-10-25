@@ -1,9 +1,13 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <h1 class="text-center">Thanks!</h1>
-    <p class="text-center">
-      If you have questions please ask your table host. Thanks!
-    </p>
+    <div class="col-sm-8 offset-2">
+      <p class="text-center">
+        If you were not redirected, please 'allow popups' on this page, 
+        or go ahead and follow the 'Donate' link above.
+        If you have questions please ask your table host. Thanks!
+      </p>
+    </div>
   </div>
 </template>
 
