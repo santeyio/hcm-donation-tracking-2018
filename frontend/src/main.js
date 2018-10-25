@@ -10,17 +10,19 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 //-----------------
 //   Components
 //-----------------
+// + Root
 import Form from './components/Form'
 import Board from './components/Board'
+import Success from './components/Success'
 
 
 //--------------------
 //  Global Variables
 //--------------------
-// const apiUrl = 'http://localhost:5500'
-const apiUrl = 'http://gala.hartfordcitymission.org'
+const apiUrl = 'http://localhost:5500'
+// const apiUrl = 'https://gala.calebhayashida.com'
 Vue.prototype.$apiUrl = apiUrl
-Vue.prototype.$goalAmount = 20000
+Vue.prototype.$goalAmount = 100000
 
 
 //---------------------
@@ -46,6 +48,11 @@ var router = new VueRouter({
       path: '/board',
       name: 'Board',
       component: Board,
+    },
+    {
+      path: '/success',
+      name: 'Success',
+      component: Success,
     }
   ]
 });

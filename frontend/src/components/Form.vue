@@ -10,15 +10,15 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="first_name" class="col col-form-label">First Name</label>
+            <label for="firstName" class="col col-form-label">First Name</label>
             <div class="col">
-              <input v-model="first_name" id="first_name" type="text" class="form-control" placeholder="John"/>
+              <input v-model="firstName" id="firstName" type="text" class="form-control" placeholder="John"/>
             </div>
           </div>
           <div class="form-group row">
-            <label for="last_name" class="col col-form-label">Last Name</label>
+            <label for="lastName" class="col col-form-label">Last Name</label>
             <div class="col">
-              <input v-model="last_name" id="last_name" type="text" class="form-control" placeholder="Doe"/>
+              <input v-model="lastName" id="lastName" type="text" class="form-control" placeholder="Doe"/>
             </div>
           </div>
         </div>
@@ -27,16 +27,16 @@
           <legend class="col-form-laebl">Payment Method</legend>
           <div class="col-md-4 offset-md-5 text-left">
             <div class="form-check">
-              <input v-model="payment_type" class="form-check-input" name="payment_type" type="radio" value="eft"/>
+              <input v-model="paymentType" class="form-check-input" name="paymentType" type="radio" value="EFT"/>
               <label for="eft">EFT</label>
             </div>
             <div class="form-check">
-              <input v-model="payment_type" class="form-check-input" name="payment_type" type="radio" value="credit_card"/>
-              <label for="eft">Credit Card</label>
+              <input v-model="paymentType" class="form-check-input" name="paymentType" type="radio" value="Credit or Debit Card"/>
+              <label for="eft">Credit or Debit Card</label>
             </div>
             <div class="form-check">
-              <input v-model="payment_type" class="form-check-input" name="payment_type" type="radio" value="check"/>
-              <label for="eft">Check</label>
+              <input v-model="paymentType" class="form-check-input" name="paymentType" type="radio" value="Cash or Check"/>
+              <label for="eft">Cash or Check</label>
             </div>
           </div>
         </fieldset>
@@ -55,7 +55,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-              <input v-model="one_time_amount" id="one_time_amount" class="form-control" type="number" />
+              <input v-model="oneTimeAmount" id="oneTimeAmount" class="form-control" type="number" />
             </div>
           </div>
           <div class="col">
@@ -63,7 +63,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
               </div>
-              <input v-model="monthly_amount" id="monthly_amount" class="form-control" type="number" />
+              <input v-model="monthlyAmount" id="monthlyAmount" class="form-control" type="number" />
             </div>
           </div>
         </div>
@@ -72,10 +72,34 @@
     <button 
       type="button" 
       class="btn btn-primary"
-      @click="submit"
+      v-b-modal.submitModal
     >
-      Submit
+      Continue
     </button>
+    <b-modal ref="submitModal" hide-footer id="submitModal" title="Please Verify Your Information">
+      <div class="row">
+        <div id="info" class="col-sm-6 text-left">
+          <span class="text-muted">First Name:</span><br/>
+          <span class="text-muted">Last Name:</span> <br/>
+          <span class="text-muted">Email:</span> <br/>
+          <span class="text-muted">Monthly Donation:</span> <br/>
+          <span class="text-muted">One Time Donation:</span> <br/>
+          <span class="text-muted">Payment Type:</span> <br/>
+        </div>
+        <div class="col-sm-6 text-left">
+          {{ firstName }}<br/>
+          {{ lastName }}<br/>
+          {{ email }}<br/>
+          {{ monthlyAmount }}<br/>
+          {{ oneTimeAmount }}<br/>
+          {{ paymentType }}<br/>
+        </div>
+      </div>
+      <div id="footer" class="modal-footer">
+        <b-button @click="hideModal" id="info-button" variant="info">Edit</b-button>
+        <b-button @click="submit" variant="primary">Submit</b-button>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -89,37 +113,42 @@ export default {
   },
   data: function() {
     return {
-      payment_type,
-      email,
-      first_name,
-      last_name,
-      monthly_amount,
-      one_time_amount
+      paymentType: "",
+      email: "",
+      firstName: "" ,
+      lastName: "",
+      monthlyAmount: null,
+      oneTimeAmount: null
     }
   },
   methods: {
     submit: function submit() {
       console.log('submit happened!');
-      console.log(this.payment_type, this.email, this.first_name, this.monthly_amount, this.one_time_amount);
       axios({
         url: `${this.$apiUrl}/api/user`,
         method: 'POST',
         data: {
-          first_name: this.first_name,
-          last_name: this.last_name,
+          firstName: this.firstName,
+          lastName: this.lastName,
           email: this.email,
-          payment_type: this.payment_type,
-          one_time_amount: this.one_time_amount,
-          monthly_amount: this.monthly_amount
+          paymentType: this.paymentType,
+          oneTimeAmount: this.oneTimeAmount,
+          monthlyAmount: this.monthlyAmount
         },
         headers: {
           'Content': 'application/json',
         }
       }).then(res => {
           console.log(res.status);
+          this.$router.push('/success');
+          window.open('https://www.hartfordcitymission.org/donate.html', '_blank')
         }).catch(err => {
+          alert('Whoops! Something went wrong, please try again');
           console.log(err);
         });
+    },
+    hideModal() {
+      this.$refs.submitModal.hide();
     }
   },
   sockets: {
@@ -145,5 +174,14 @@ li {
 }
 a {
   color: #42b983;
+}
+#info {
+  margin-bottom: 3%;
+}
+#footer {
+  padding-bottom: 0;
+}
+#info-button {
+  margin-right: 3%;
 }
 </style>
