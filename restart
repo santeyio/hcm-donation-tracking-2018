@@ -1,4 +1,4 @@
 #!/bin/bash
 
-kill `cat ../tmp/gunicorn.pid`;
+kill `cat ../tmp/gunicorn.pid` &&
 ../bin/gunicorn -D --worker-class eventlet -w 1 --bind 127.0.0.1:5503 -p ../tmp/gunicorn.pid app:app;
