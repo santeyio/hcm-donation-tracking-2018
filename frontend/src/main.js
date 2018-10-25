@@ -19,8 +19,8 @@ import Success from './components/Success'
 //--------------------
 //  Global Variables
 //--------------------
-const apiUrl = 'http://localhost:5500'
-// const apiUrl = 'https://gala.calebhayashida.com'
+//const apiUrl = 'http://localhost:5500'
+ const apiUrl = 'https://gala.calebhayashida.com'
 Vue.prototype.$apiUrl = apiUrl
 Vue.prototype.$goalAmount = 100000
 
