@@ -118,12 +118,12 @@ export default {
         url: `${this.$apiUrl}/api/user`,
         method: 'POST',
         data: {
-          firstName: this.firstName,
-          lastName: this.lastName,
+          first_name: this.firstName,
+          last_name: this.lastName,
           email: this.email,
-          paymentType: this.paymentType,
-          oneTimeAmount: this.oneTimeAmount,
-          monthlyAmount: this.monthlyAmount
+          payment_type: this.paymentType,
+          one_time_amount: this.oneTimeAmount,
+          monthly_amount: this.monthlyAmount
         },
         headers: {
           'Content': 'application/json',
