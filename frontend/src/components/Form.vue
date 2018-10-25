@@ -141,7 +141,7 @@ export default {
       }).then(res => {
           console.log(res.status);
           this.$router.push('/success');
-          window.open('https://www.hartfordcitymission.org/donate.html', '_blank')
+          window.open('https://www.hartfordcitymission.org/donate.html', '_parent')
         }).catch(err => {
           alert('Whoops! Something went wrong, please try again');
           console.log(err);
