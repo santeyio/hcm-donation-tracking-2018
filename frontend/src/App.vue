@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <notifications group="donations"/>
+    <notifications group="donations" />
+    <notifications group="fieldValidation" position="top center"/>
     <notifications />
   </div>
 </template>
@@ -18,11 +19,4 @@ export default {
 </script>
 
 <style lang="scss">
-.notification-content {
-  font-size: 120px;
-}
-.notifications {
-  left: calc(78% - 150px);
-  width: 29% !important;
-}
 </style>

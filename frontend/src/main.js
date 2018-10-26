@@ -14,6 +14,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Form from './components/Form'
 import Board from './components/Board'
 import Success from './components/Success'
+import SuccessCashOrCheck from './components/SuccessCashOrCheck'
 
 
 //--------------------
@@ -53,7 +54,12 @@ var router = new VueRouter({
       path: '/success',
       name: 'Success',
       component: Success,
-    }
+    },
+    {
+      path: '/success-cash-or-check',
+      name: 'SuccessCashOrCheck',
+      component: SuccessCashOrCheck,
+    },
   ]
 });
 

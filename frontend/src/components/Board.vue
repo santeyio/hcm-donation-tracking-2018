@@ -102,4 +102,11 @@ h2 {
 #scoreboard {
   margin-top: 3%;
 }
+.notification-content {
+  font-size: 120px;
+}
+.notifications {
+  left: calc(78% - 150px);
+  width: 29% !important;
+}
 </style>

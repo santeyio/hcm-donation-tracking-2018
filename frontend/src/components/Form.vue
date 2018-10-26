@@ -72,7 +72,7 @@
     <button 
       type="button" 
       class="btn btn-primary"
-      v-b-modal.submitModal
+      @click="showModal"
     >
       Continue
     </button>
@@ -113,7 +113,6 @@ export default {
   },
   methods: {
     submit: function submit() {
-      console.log('submit happened!');
       axios({
         url: `${this.$apiUrl}/api/user`,
         method: 'POST',
@@ -129,16 +128,43 @@ export default {
           'Content': 'application/json',
         }
       }).then(res => {
-          console.log(res.status);
+        if (this.paymentType !== "Cash or Check") {
           this.$router.push('/success');
           window.open('https://www.hartfordcitymission.org/donate.html', '_parent')
-        }).catch(err => {
-          alert('Whoops! Something went wrong, please try again');
-          console.log(err);
+        } else {
+          this.$router.push('/success-cash-or-check');
+        }
+      }).catch(err => {
+        alert('Whoops! Something went wrong, please try again');
+        console.log(err);
+      });
+    },
+    showModal() {
+      if (this.validateFields()) {
+        this.$refs.submitModal.show();
+      } else {
+        console.log('error!');
+        this.$notify({
+          group: 'fieldValidation',
+          type: 'error',
+          title: 'Whoops!',
+          text: 'Please fill out all of the required fields!'
         });
+      }
     },
     hideModal() {
       this.$refs.submitModal.hide();
+    },
+    validateFields() {
+      if (this.paymentType !== ""
+      && this.firstName !== ""
+      && this.lastName !== ""
+      && this.email !== ""
+      && ((this.monthlyAmount !== null && this.monthlyAmount !== 0) || (this.oneTimeAmount !== null && this.oneTimeAmount !== 0))) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   sockets: {
