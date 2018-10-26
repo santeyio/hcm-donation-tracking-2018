@@ -1,7 +1,6 @@
 <template>
   <div class="col-md-8 text-center" id="scoreboard">
     <h1>Total: ${{ formatWithCommas(total) }}</h1>
-    <h2>Goal: ${{ formatWithCommas(goal) }}</h2>
     <div class="col">
       <b-progress variant="success" :value="counter" :max="max" show-progress animated></b-progress>
     </div>
@@ -22,6 +21,7 @@ export default {
       time_offset: 0,
       running_notifications: false,
       goal: this.$goalAmount,
+      goal_hit: false,
     }
   },
   beforeCreate: function() {
@@ -56,6 +56,16 @@ export default {
             text: '$' + String((Number(donation.monthly_amount) * 12) + Number(donation.one_time_amount)) ,
             duration: 30000,
           });
+          // if you go over set goal
+          if (!this.goal_hit && Number(this.total) > Number(this.goal)) {
+            this.$notify({
+              group: 'newRecord',
+              type: 'error',
+              text: 'New record hit!',
+              duration: 8000,
+            });
+            this.goal_hit = true;
+          }
         } else {
           console.log('clear setInterval');
           clearInterval(s);

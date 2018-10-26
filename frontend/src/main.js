@@ -23,7 +23,7 @@ import SuccessCashOrCheck from './components/SuccessCashOrCheck'
 //const apiUrl = 'http://localhost:5500'
  const apiUrl = 'https://gala.calebhayashida.com'
 Vue.prototype.$apiUrl = apiUrl
-Vue.prototype.$goalAmount = 100000
+Vue.prototype.$goalAmount = 80000
 
 
 //---------------------
