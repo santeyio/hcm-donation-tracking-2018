@@ -4,18 +4,21 @@
       <form>
         <div class="text-left">
           <div class="form-group row">
+            <span id="required-star">*</span>
             <label for="email" class="col col-form-label">Email</label>
             <div class="col">
               <input v-model="email" id="email" type="email" class="form-control" placeholder="Email"/>
             </div>
           </div>
           <div class="form-group row">
+            <span id="required-star">*</span>
             <label for="firstName" class="col col-form-label">First Name</label>
             <div class="col">
               <input v-model="firstName" id="firstName" type="text" class="form-control" placeholder="John"/>
             </div>
           </div>
           <div class="form-group row">
+            <span id="required-star">*</span>
             <label for="lastName" class="col col-form-label">Last Name</label>
             <div class="col">
               <input v-model="lastName" id="lastName" type="text" class="form-control" placeholder="Doe"/>
@@ -24,7 +27,10 @@
         </div>
         <hr/>
         <fieldset class="form-group">
-          <legend class="col-form-laebl">Payment Method</legend>
+          <legend class="col-form-laebl">
+            <span id="required-star">*</span>
+            Payment Method
+          </legend>
           <div class="col-md-4 offset-md-5 text-left">
             <div class="form-check">
               <input v-model="paymentType" class="form-check-input" name="paymentType" type="radio" value="EFT"/>
@@ -199,5 +205,8 @@ a {
 }
 #info-button {
   margin-right: 3%;
+}
+#required-star {
+  color: red;
 }
 </style>
