@@ -64,7 +64,8 @@ def save_donor(request):
     new_donor = Donor(
             first_name = jparse.get('first_name'),
             last_name = jparse.get('last_name'),
-            email =  jparse.get('payment_method'),
+            email = jparse.get('email'),
+            payment_method = jparse.get('payment_type'),
             one_time_amount = jparse.get('one_time_amount'),
             monthly_amount = jparse.get('monthly_amount'))
     db.session.add(new_donor)
